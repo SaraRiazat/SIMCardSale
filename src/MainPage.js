@@ -10,6 +10,7 @@ import Property from "./component/property";
 import DesktopMenu from "./component/desktopMenu";
 import PhoneMenu from "./component/phoneMenu";
 import FooterList from "./component/footerList";
+import Hello from "../src/component/form"
 
 function Main() {
   return (

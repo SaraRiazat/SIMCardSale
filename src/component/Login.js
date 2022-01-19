@@ -13,6 +13,13 @@ const Login = () => {
         email: "",
         password: "",
     });
+    const userNotFound = [
+        {
+            name: "sara123@gmail.com",
+            password: "123456"
+        }
+    ]
+
     const [errors, setErrors] = useState({});
     const [touched, setTouched] = useState({});
 
@@ -32,7 +39,11 @@ const Login = () => {
         event.preventDefault();
         if (!Object.keys(errors).length) {
             notify("You loged up successfully", "success")
-        } else {
+        }
+        else if(data.email===userNotFound.email && data.password===userNotFound.password){
+            notify("کاربر یافت نشد", "success")
+        }
+        else {
             notify("Invalid data!", "error")
             setTouched({
                 email: true,
@@ -42,11 +53,14 @@ const Login = () => {
     }
 
     return (
+        
         <div className={styles.container}>
-            <form onSubmit={submitHandler} className={styles.formContainer}>
-                <h2 className={styles.header}>ورود</h2>
-                <div className={styles.formField}>
-                    <label>ایمیل یا نام کاربری خود را وارد کنید</label>
+                    <form onSubmit={submitHandler} className={styles.formContainer}>
+                    <h2 className={styles.header}>ورود</h2>
+                    <div className={styles.formField}>
+                        <label>ایمیل یا نام کاربری خود را وارد کنید</label>
+                        
+    
                     <input
                         className={(errors.email && touched.email) ? styles.uncompleted : styles.formInput}
                         type="text"
@@ -73,6 +87,7 @@ const Login = () => {
             </form>
             <ToastContainer />
         </div>
+          
     );
 };
 
